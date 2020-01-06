@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 public class RedisConnectionFactory {
@@ -20,8 +21,12 @@ public class RedisConnectionFactory {
 		} catch (IOException e) {
 			throw new SQLException("Couldn't connect ("+ e.getMessage() + ")");
 		}
-		
-		Connection conn = new RedisConnection(io, info);	
+
+		//设置当前DB
+		Connection conn = new RedisConnection(io, info);
+		Statement statement = conn.createStatement();
+		statement.execute(RedisCommand.SELECT.toString() + " " + dbnb);
+
 		return conn;
 	}
 

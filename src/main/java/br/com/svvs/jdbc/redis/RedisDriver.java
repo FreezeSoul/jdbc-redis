@@ -53,7 +53,7 @@ public class RedisDriver implements Driver {
                 host = uri.getHost() != null ? uri.getHost() : DEFAULT_HOST;
                 port = uri.getPort() != -1 ? uri.getPort() : DEFAULT_PORT;
 
-                dbnb = DEFAULT_PORT;
+                dbnb = DEFAULT_DBNB;
 
                 if (uri.getPath() != null && uri.getPath().length() > 1) {
                     dbnb = Integer.parseInt(uri.getPath().substring(1));

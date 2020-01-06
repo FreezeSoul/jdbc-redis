@@ -450,7 +450,8 @@ public class RedisResultSet implements ResultSet {
 
     @Override
     public Object getObject(final int columnIndex) throws SQLException {
-        throw new SQLFeatureNotSupportedException("getObject");
+        checkIfClosed();
+        return getString(0);
     }
 
     @Override
